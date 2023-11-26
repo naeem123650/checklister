@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Admin;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,3 +20,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['middleware'=> 'auth'],function(){
+    Route::group(['middleware' => 'admin', 'prefix' => 'admin','as' => 'admin.'],function (){
+        Route::resource('pages',PagesController::class);
+    });
+});

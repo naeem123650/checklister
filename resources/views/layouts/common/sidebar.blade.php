@@ -8,6 +8,14 @@
         </svg>
     </div>
     <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
+        <li class="nav-item mt-auto">
+            <a class="nav-link" href="{{ route('admin.pages.index') }}">
+                <svg class="nav-icon">
+                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-description"></use>
+                </svg>
+                Pages
+            </a>
+        </li>
         <li class="nav-item"><a class="nav-link" href="index.html">
                 <svg class="nav-icon">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
@@ -37,6 +45,5 @@
                 @csrf
             </form>
         </li>
-
     </ul>
 </div>
