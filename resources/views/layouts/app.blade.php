@@ -31,6 +31,7 @@
     {{-- header end   --}}
 
     <div class="body flex-grow-1 px-3">
+        @include('layouts.common.errors')
         <div class="container-fluid-lg">
             {{-- main body start--}}
             @yield('content')
