@@ -17,8 +17,17 @@ class TasksController extends Controller
     public function store(StoreTaskRequest $request,Checklist $checklist)
     {
         $checklistGroup = $checklist->checklistGroup;
-        $checklist->tasks()->create($request->validated());
-        return view('admin.checklists.edit',compact('checklistGroup','checklist'));
+
+        $checklist->tasks()->create(
+            $request->validated() + ['position' => $this->getTaskPosition($checklist)]
+        );
+
+        return redirect()->back();
+    }
+
+    public function getTaskPosition(Checklist $checklist)
+    {
+        return $checklist->tasks->max('position') + 1;
     }
 
     /**
