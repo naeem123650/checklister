@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="card-footer text-body-secondary">
-                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="submit" class="btn btn-sm btn-primary">Update</button>
             </div>
         </div>
     </form>
@@ -24,34 +24,16 @@
     <form action="{{route('admin.checklist_groups.checklists.destroy',[$checklistGroup, $checklist])}}" method="POST">
         @csrf
         @method('DELETE')
-        <button type="submit" class="btn btn-danger">Delete This Checklist</button>
+        <button type="submit" class="btn btn-sm btn-danger">Delete This Checklist</button>
     </form>
     <hr>
     <h4>
         Task Lists
     </h4>
-    <table class="table">
-        <tbody>
-        @forelse($checklist->tasks as $task)
-            <tr>
-                <th scope="row">{{$task->id}}</th>
-                <td>{{$task->name}}</td>
-                <td>
-                    <a href="{{route('admin.checklists.tasks.edit',[$checklist,$task])}}" class="btn btn-sm btn-warning">Edit</a>
-                    <form style="display:inline" action="{{route('admin.checklists.tasks.destroy',[$checklist,$task])}}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-sm btn-danger">Delete This Task</button>
-                    </form>
-                </td>
-            </tr>
-        @empty
-            <tr>
-                <td colspan="3">No tasks found</td>
-            </tr>
-        @endforelse
-        </tbody>
-    </table>
+
+    {{-- livewire task table component  --}}
+    @livewire('task-table', ['checklist' => $checklist])
+
     <hr>
     <form action="{{ route('admin.checklists.tasks.store',[$checklist]) }}" method="POST">
         @csrf
@@ -70,7 +52,7 @@
                 </div>
             </div>
             <div class="card-footer text-body-secondary">
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-sm btn-primary">Save</button>
             </div>
         </div>
     </form>

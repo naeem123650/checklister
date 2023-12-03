@@ -18,6 +18,7 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @livewireStyles
 </head>
 <body>
 {{--side bar start--}}
@@ -51,6 +52,7 @@
         integrity="sha384-ndYvZ1pzCEl0ODt53q58pd9sKJKiqtXq9fe2jFIPtDbZ9BREZw+XZHoaFag0qWxy"
         crossorigin="anonymous"></script>
 <script src="https://coreui.io/demos/bootstrap/4.2/free/vendors/simplebar/js/simplebar.min.js"></script>
-
+@livewireScripts
+<script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v1.x.x/dist/livewire-sortable.js"></script>
 </body>
 </html>

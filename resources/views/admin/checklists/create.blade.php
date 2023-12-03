@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="card-footer text-body-secondary">
-                <button type="submit" href="#" class="btn btn-primary">Save</button>
+                <button type="submit" href="#" class="btn btn-sm btn-primary">Save</button>
             </div>
         </div>
     </form>

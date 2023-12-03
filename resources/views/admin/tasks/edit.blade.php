@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="card-footer text-body-secondary">
-                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="submit" class="btn btn-sm btn-primary">Update</button>
             </div>
         </div>
     </form>
