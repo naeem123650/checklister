@@ -47,9 +47,9 @@ class ChecklistController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(CreateChecklistRequest $request,ChecklistGroup $checklistGroup)
+    public function update(CreateChecklistRequest $request,ChecklistGroup $checklistGroup,Checklist $checklist)
     {
-        $checklistGroup->checklists()->update($request->validated());
+        $checklist->update($request->validated());
 
         return to_route('admin.home');
     }
@@ -59,7 +59,7 @@ class ChecklistController extends Controller
      */
     public function destroy(ChecklistGroup $checklistGroup,Checklist $checklist)
     {
-        $checklistGroup->checklists()->delete();
+        $checklist->delete();
 
         return to_route('admin.home');
     }

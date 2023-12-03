@@ -15,14 +15,14 @@
                 </div>
             </div>
             <div class="card-footer text-body-secondary">
-                <button type="submit" href="#" class="btn btn-primary">Update</button>
-
+                <button type="submit" href="#" class="btn btn-sm btn-primary">Update</button>
             </div>
         </div>
     </form>
-    <form action="{{route('admin.checklist_groups.destroy',[$checklistGroup])}}">
+    <hr>
+    <form action="{{route('admin.checklist_groups.destroy',[$checklistGroup])}}" method="POST">
         @csrf
         @method('DELETE')
-        <button type="submit" onclick="return confirm('Are you sure ?');" class="btn btn-danger">Delete</button>
+        <button type="submit" onclick="return confirm('Are you sure ?');" class="btn btn-sm btn-danger">Delete This Checklist Group</button>
     </form>
 @endsection
