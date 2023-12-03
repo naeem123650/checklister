@@ -6,16 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ChecklistGroup extends Model
+class Task extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'checklist_id',
         'name',
+        'description'
     ];
-
-    public function checklists()
-    {
-        return $this->hasMany(Checklist::class);
-    }
 }

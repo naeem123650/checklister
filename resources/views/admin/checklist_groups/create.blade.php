@@ -10,11 +10,11 @@
             <div class="card-body">
                 <div class="mb-3">
                     <label for="checklist_group_name" class="form-label">Checklist Group Name</label>
-                    <input type="text" class="form-control" name="name" id="checklist_group_name" placeholder="Enter Checklist Group Name">
+                    <input type="text" value="{{old('name')}}" class="form-control" name="name" id="checklist_group_name" placeholder="Enter Checklist Group Name">
                 </div>
             </div>
             <div class="card-footer text-body-secondary">
-                <button type="submit" href="#" class="btn btn-primary">Save</button>
+                <button type="submit" href="#" class="btn btn-sm btn-primary">Save</button>
             </div>
         </div>
     </form>
