@@ -54,5 +54,6 @@
 <script src="https://coreui.io/demos/bootstrap/4.2/free/vendors/simplebar/js/simplebar.min.js"></script>
 @livewireScripts
 <script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v1.x.x/dist/livewire-sortable.js"></script>
+@stack('scripts')
 </body>
 </html>
