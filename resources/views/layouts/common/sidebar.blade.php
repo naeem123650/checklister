@@ -1,10 +1,10 @@
 <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
     <div class="sidebar-brand d-none d-md-flex">
         <svg class="sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
-            <use xlink:href="assets/brand/coreui.svg#full"></use>
+            <use xlink:href="{{ asset('assets/brand/coreui.svg#full')  }} "></use>
         </svg>
         <svg class="sidebar-brand-narrow" width="46" height="46" alt="CoreUI Logo">
-            <use xlink:href="assets/brand/coreui.svg#signet"></use>
+            <use xlink:href="{{ asset('assets/brand/coreui.svg#signet') }}"></use>
         </svg>
     </div>
 
@@ -12,7 +12,7 @@
         <li class="nav-item">
             <a class="nav-link" href="{{route('admin.home')}}">
                 <svg class="nav-icon">
-                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
+                    <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-speedometer') }}"></use>
                 </svg>
                 Dashboard
                 <span class="badge badge-sm bg-info ms-auto">NEW</span>
@@ -22,7 +22,7 @@
             <li class="nav-item mt-auto">
                 <a class="nav-link" href="{{ route('admin.pages.index') }}">
                     <svg class="nav-icon">
-                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-description"></use>
+                        <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-description') }}"></use>
                     </svg>
                     Pages
                 </a>
@@ -30,6 +30,7 @@
             <li class="nav-title">Checklist Group</li>
             @foreach(\App\Models\ChecklistGroup::with('checklists')->get() as $group)
                 <li class="nav-group">
+
                     <a class="nav-link" href="{{route('admin.checklist_groups.edit',[$group])}}">
                         {{$group->name}}
                     </a>
@@ -61,7 +62,7 @@
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                 <svg class="nav-icon">
-                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-description"></use>
+                    <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-description') }}"></use>
                 </svg>
                 Logout</a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
