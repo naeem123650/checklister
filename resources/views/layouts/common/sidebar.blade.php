@@ -55,6 +55,17 @@
                     Create Checklist Group
                 </a>
             </li>
+        @else
+            @foreach(\App\Models\ChecklistGroup::with(['checklists' => function($query) { $query->whereNull('user_id'); }])->get() as $group)
+                @foreach($group->checklists as $checklist)
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('user.checklist',$checklist)}}">
+                            <span class="nav-icon"></span>
+                            {{$checklist->name}}
+                        </a>
+                    </li>
+                @endforeach
+            @endforeach
         @endif
 
         <li class="nav-item mt-auto"><a class="nav-link" href="{{ route('logout') }}"
