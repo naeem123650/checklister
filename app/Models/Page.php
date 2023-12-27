@@ -15,4 +15,8 @@ class Page extends Model
         'slug',
         'content'
     ];
+
+//    public function routeKey() {
+//        return 'slug';
+//    }
 }

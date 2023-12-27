@@ -16,8 +16,11 @@
         <ul class="header-nav ms-3">
             <li class="nav-item dropdown"><a class="nav-link py-0" data-coreui-toggle="dropdown" href="#"
                                              role="button" aria-haspopup="true" aria-expanded="false">
-                    <div class="avatar avatar-md"><img class="avatar-img" src="assets/img/avatars/8.jpg"
-                                                       alt="user@email.com"></div>
+                    <div class="avatar avatar-md">
+                        <svg class="nav-icon" height="20px" width="20px">
+                            <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-user') }}"></use>
+                        </svg>
+                    </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end pt-0">
                     <a class="dropdown-item"  href="{{ route('logout') }}"

@@ -9,15 +9,6 @@
     </div>
 
     <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
-        <li class="nav-item">
-            <a class="nav-link" href="{{route('admin.home')}}">
-                <svg class="nav-icon">
-                    <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-speedometer') }}"></use>
-                </svg>
-                Dashboard
-                <span class="badge badge-sm bg-info ms-auto">NEW</span>
-            </a>
-        </li>
         @if(auth()->user()->is_admin)
             <li class="nav-item mt-auto">
                 <a class="nav-link" href="{{ route('admin.pages.index') }}">
@@ -25,6 +16,14 @@
                         <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-description') }}"></use>
                     </svg>
                     Pages
+                </a>
+            </li>
+            <li class="nav-item mt-auto">
+                <a class="nav-link" href="{{ route('admin.users.index') }}">
+                    <svg class="nav-icon">
+                        <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-user') }}"></use>
+                    </svg>
+                    Users
                 </a>
             </li>
             <li class="nav-title">Checklist Group</li>

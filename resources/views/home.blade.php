@@ -6,9 +6,11 @@
     <div class="row">
         <div class="col-12">
             <div class="card mb-4">
-                <div class="card-header"><strong>Dashboard</strong></div>
+                <div class="card-header"><strong>{{$page->name}}</strong></div>
                 <div class="card-body">
-                    <p class="text-medium-emphasis small">you are logged in ! {{ auth()->user()->name }} </p>
+                    <p class="text-medium-emphasis small">
+                        {!! $page->content !!}
+                    </p>
                 </div>
             </div>
         </div>
