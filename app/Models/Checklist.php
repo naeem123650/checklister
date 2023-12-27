@@ -12,7 +12,9 @@ class Checklist extends Model
 
     protected $fillable = [
         'checklist_group_id',
-        'name'
+        'name',
+        'user_id',
+        'checklist_id'
     ];
 
     public function checklistGroup()

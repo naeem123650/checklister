@@ -17,7 +17,8 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::group(['middleware'=> 'auth'],function(){
-    Route::get('/{slug?}',\App\Http\Controllers\PagesController::class);
+    Route::get('/{slug?}',\App\Http\Controllers\PagesController::class)->name('admin.home');
+    Route::get('/checklist/{checklist}',\App\Http\Controllers\ChecklistController::class)->name('user.checklist');
     Route::group(['middleware' => 'is_admin', 'prefix' => 'admin','as' => 'admin.'],function (){
         Route::resource('pages', App\Http\Controllers\Admin\PagesController::class);
         Route::resource('checklist_groups',\App\Http\Controllers\Admin\ChecklistGroupController::class);
