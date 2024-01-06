@@ -42,11 +42,11 @@
                         </li>
                     @endforeach
 
-                    <li class="nav-group">
-                        <a class="nav-link" href="{{route('admin.checklist_groups.checklists.create',[$group])}}">
-                            Create Checklist
-                        </a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('admin.checklist_groups.checklists.create',[$group])}}">
+                        <span class="nav-icon"></span>
+                        Create Checklist
+                    </a>
                 </li>
             @endforeach
 
