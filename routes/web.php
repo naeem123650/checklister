@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::group(['middleware'=> 'auth'],function(){
+Route::group(['middleware'=> ['auth','save_last_action']],function(){
     Route::get('/{slug?}',\App\Http\Controllers\PagesController::class)->name('admin.home');
     Route::get('/checklist/{checklist}',\App\Http\Controllers\ChecklistController::class)->name('user.checklist');
     Route::group(['middleware' => 'is_admin', 'prefix' => 'admin','as' => 'admin.'],function (){

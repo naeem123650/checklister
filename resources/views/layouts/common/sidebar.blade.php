@@ -27,9 +27,8 @@
                 </a>
             </li>
             <li class="nav-title">Checklist Group</li>
-            @foreach(\App\Models\ChecklistGroup::with('checklists')->get() as $group)
+            @foreach($admin_menu as $group)
                 <li class="nav-group">
-
                     <a class="nav-link" href="{{route('admin.checklist_groups.edit',[$group])}}">
                         {{$group->name}}
                     </a>
@@ -41,13 +40,13 @@
                             </a>
                         </li>
                     @endforeach
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('admin.checklist_groups.checklists.create',[$group])}}">
                             <span class="nav-icon"></span>
                             Create Checklist
                         </a>
                     </li>
-                </li>
             @endforeach
 
             <li class="nav-item mt-auto">
@@ -56,12 +55,25 @@
                 </a>
             </li>
         @else
-            @foreach(\App\Models\ChecklistGroup::with(['checklists' => function($query) { $query->whereNull('user_id'); }])->get() as $group)
-                @foreach($group->checklists as $checklist)
+            @foreach($user_menu as $group)
+                <li class="nav-title" data-coreui-i18n="theme">
+                    {{$group['name']}}
+                    @if($group['is_new'])
+                        <span class="ml-3 badge bg-info text-uppercase" data-coreui-i18n="new">NEW</span>
+                    @elseif($group['is_updated'])
+                        <span class="ml-3 badge bg-warning text-uppercase" data-coreui-i18n="new">UPD</span>
+                    @endif
+                </li>
+                @foreach($group['checklists'] as $checklist)
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('user.checklist',$checklist)}}">
-                            <span class="nav-icon"></span>
-                            {{$checklist->name}}
+                        <a class="nav-link" href="{{route('user.checklist',$checklist['id'])}}">
+{{--                            <span class="nav-icon"></span>--}}
+                            {{$checklist['name']}}
+                            @if($checklist['is_new'])
+                                <span class="badge bg-info text-uppercase ms-auto" data-coreui-i18n="new">NEW</span>
+                            @elseif($checklist['is_updated'])
+                                <span class="badge bg-warning text-uppercase ms-auto" data-coreui-i18n="new">UPD</span>
+                            @endif
                         </a>
                     </li>
                 @endforeach
