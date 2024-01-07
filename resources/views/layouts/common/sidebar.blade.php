@@ -27,7 +27,7 @@
                 </a>
             </li>
             <li class="nav-title">Checklist Group</li>
-            @foreach(\App\Models\ChecklistGroup::with('checklists')->get() as $group)
+            @foreach($admin_menu as $group)
                 <li class="nav-group">
                     <a class="nav-link" href="{{route('admin.checklist_groups.edit',[$group])}}">
                         {{$group->name}}

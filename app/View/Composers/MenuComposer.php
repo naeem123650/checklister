@@ -2,6 +2,7 @@
 
 namespace App\View\Composers;
 
+use App\Models\Checklist;
 use App\Models\ChecklistGroup;
 use Illuminate\Support\Carbon;
 use Illuminate\View\View;
@@ -16,31 +17,41 @@ class MenuComposer
         $menus =  ChecklistGroup::with([
             'checklists' => function($query) {
                 $query->whereNull('user_id');
-            }
-        ])->get()->toArray();
+            },
+            'checklists.tasks'
+        ])->get();
+
+        $view->with('admin_menu', $menus);
 
         $groups = [];
 
-        $lastActionAt = auth()->user()->last_action_at;
+        $user_checklists = Checklist::where('user_id',auth()->id())->get();
 
-        if(is_null($lastActionAt)) {
-            $lastActionAt = auth()->user()->update(
-               ['last_action_at' => Carbon::now()->addYears(10)]
-            );
-        }
+        foreach ($menus->toArray() as $group) {
+            if (count($group['checklists']) > 0) {
+                $group_updated_at = $user_checklists->where('checklist_group_id', $group['id'])->max('updated_at');
+                $group['is_new'] = $group_updated_at && Carbon::create($group['created_at'])->greaterThan($group_updated_at);
+                $group['is_updated'] = !($group['is_new'])
+                    && $group_updated_at
+                    && Carbon::create($group['updated_at'])->greaterThan($group_updated_at);
 
-        foreach ($menus as $group) {
-            $group['is_new'] = Carbon::create($group['created_at'])->greaterThan($lastActionAt);
-            $group['is_updated'] = !($group['is_new']) && Carbon::create($group['updated_at'])->greaterThan($lastActionAt);;
-            foreach ($group['checklists'] as &$checklist) {
-                $checklist['is_new'] = Carbon::create($checklist['created_at'])->greaterThan($lastActionAt);
-                $checklist['is_updated'] = !($checklist['is_new']) && Carbon::create($checklist['updated_at'])->greaterThan($lastActionAt);
-                $checklist['tasks'] = 1;
-                $checklist['completed_tasks'] = 0;
+                foreach ($group['checklists'] as &$checklist) {
+                    $checklist_updated_at = $user_checklists->where('checklist_id', $checklist['id'])->max('updated_at');
+
+                    $checklist['is_new'] = !($group['is_new'])
+                        && $checklist_updated_at
+                        && Carbon::create($checklist['created_at'])->greaterThan($checklist_updated_at);
+                    $checklist['is_updated'] = !($group['is_new']) && !($group['is_updated'])
+                        && !($checklist['is_new'])
+                        && $checklist_updated_at
+                        && Carbon::create($checklist['updated_at'])->greaterThan($checklist_updated_at);;
+                    $checklist['tasks_count'] = count($checklist['tasks']);
+//                    $checklist['completed_tasks_count'] = count($checklist['user_completed_tasks']);
+                }
+
+                $groups[] = $group;
             }
-            $groups[] = $group;
         }
-
         $view->with('user_menu', $groups);
     }
 }
