@@ -25,5 +25,6 @@ Route::group(['middleware'=> ['auth','save_last_action']],function(){
         Route::resource('checklist_groups.checklists',\App\Http\Controllers\Admin\ChecklistController::class);
         Route::resource('checklists.tasks',\App\Http\Controllers\Admin\TasksController::class);
         Route::get('users',[\App\Http\Controllers\Admin\UserController::class,'index'])->name('users.index');
+        Route::post('image/upload',[\App\Http\Controllers\Admin\ImageUploadController::class,'store'])->name('image.upload');
     });
 });
