@@ -2,6 +2,19 @@
     <tbody>
     @forelse($tasks as $task)
         <tr>
+            <th scope="row">
+                @if(!$loop->first)
+                    <a wire:click.prevent="moveTaskUp({{$task->id}})" title="Up" style="cursor: pointer;">
+                        &uarr;
+                    </a>
+                @endif
+                &nbsp;&nbsp;
+                @if(!$loop->last)
+                    <a wire:click.prevent="moveTaskDown({{$task->id}})" title="Down" style="cursor: pointer;">
+                        &darr;
+                    </a>
+                @endif
+            </th>
             <th scope="row">{{$task->id}}</th>
             <td>{{$task->name}}</td>
             <td>
