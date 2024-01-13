@@ -4,19 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateChecklistRequest;
+use App\Http\Requests\UpdateChecklistRequest;
 use App\Models\Checklist;
 use App\Models\ChecklistGroup;
 use Illuminate\Http\Request;
 
 class ChecklistController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -47,7 +41,7 @@ class ChecklistController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(CreateChecklistRequest $request,ChecklistGroup $checklistGroup,Checklist $checklist)
+    public function update(UpdateChecklistRequest $request,ChecklistGroup $checklistGroup,Checklist $checklist)
     {
         $checklist->update($request->validated());
 
