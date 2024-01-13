@@ -1,7 +1,7 @@
-<table class="table" wire:sortable="updateTaskOrder">
+<table class="table">
     <tbody>
     @forelse($tasks as $task)
-        <tr wire:sortable.item="{{ $task->id }}" wire:key="task-{{ $task->id }}">
+        <tr>
             <th scope="row">{{$task->id}}</th>
             <td>{{$task->name}}</td>
             <td>
